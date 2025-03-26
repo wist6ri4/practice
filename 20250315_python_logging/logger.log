@@ -1,0 +1,6 @@
+2025-03-15 17:28:29,490 - file_logger - ERROR - stack trace: Traceback (most recent call last):
+  File "e:\ユーザー\ドキュメント\VSCode\practice\20250315_python_logging\log.py", line 22, in <module>
+    1 / 0
+    ~~^~~
+ZeroDivisionError: division by zero
+
