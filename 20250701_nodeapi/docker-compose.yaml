@@ -1,10 +1,16 @@
-version: '3.9'
+version: "3.9"
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: ["npm", "run", "dev"]
+    # Node.jsアプリケーションのサービス
+    app:
+        # Dockerfileを使用してビルド
+        build: .
+        # ポート3000をホストのポート3000にマッピング
+        ports:
+            - "3000:3000"
+        # ボリュームをマウント
+        volumes:
+            - .:/app
+            - /app/node_modules
+
+        # 開発モードで実行
+        command: ["npm", "run", "dev"]
