@@ -1,0 +1,39 @@
+###
+GET http://localhost:3000/api/hello
+
+###
+POST http://localhost:3000/api/echo
+Content-Type: application/json
+
+{
+    "message": "Hello, Node.js!"
+}
+
+
+###
+GET http://localhost:3000/api/users
+
+###
+GET http://localhost:3000/api/users/1
+
+###
+GET http://localhost:3000/api/users/search?name=John
+
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": "John"
+}
+
+###
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+    "name": "Jane"
+}
+
+###
+DELETE http://localhost:3000/api/users/1
