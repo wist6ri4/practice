@@ -1,0 +1,54 @@
+version: '3.9'
+services:
+  app:
+    # コンテナ名
+    container_name: docker-practice-app
+    # ビルド設定
+    build:
+      dockerfile: docker/app/Dockerfile
+      context: .
+    # ボリュームの指定
+    volumes:
+      - type: bind
+        source: ./src
+        target: /src
+    # ポートの公開
+    ports:
+      - '18000:8000'
+    # デフォルト命令
+    command: php -S 0.0.0.0:8000 -t /src
+  db:
+    # コンテナ名
+    container_name: docker-practice-db
+    # ビルド設定
+    build:
+      dockerfile: docker/db/Dockerfile
+      context: .
+    # 環境変数
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: hoge
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: event
+    # ボリュームの指定
+    volumes:
+      - type: volume
+        source: docker-practice-db-volume
+        target: /var/lib/mysql
+      - type: bind
+        source: ./docker/db/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+
+  mail:
+    # コンテナ名
+    container_name: docker-practice-mail
+    # イメージの指定
+    image: mailhog/mailhog:v1.0.1
+    # プラットフォームの指定
+    platform: linux/amd64
+    # ポートの公開
+    ports:
+      - '18025:8025'
+
+volumes:
+  docker-practice-db-volume:
